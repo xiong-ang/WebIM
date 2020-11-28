@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="clock"></div>
+    <script>
+        let socket = new WebSocket('ws://localhost:8080/clock');
+        socket.addEventListener('open', function (event) {
+            console.log('socket is open')
+        });
+
+        socket.addEventListener('message', function (event) {
+            console.log('Message from server', event.data);
+            document.getElementById('clock').innerHTML=event.data;
+        });
+    </script>
+</body>
+</html>
